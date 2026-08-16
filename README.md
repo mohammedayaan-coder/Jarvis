@@ -203,4 +203,243 @@ Your `.gitignore` could contain:
 .env
 numbers_phone.py
 ```
+## 📦 Required Python Modules
+
+Jarvis uses the following Python modules:
+
+| Module              | Purpose                                                |
+| ------------------- | ------------------------------------------------------ |
+| `SpeechRecognition` | Converts voice/speech into text                        |
+| `PyAudio`           | Provides microphone/audio input for Speech Recognition |
+| `pyttsx3`           | Converts text into speech                              |
+| `google-genai`      | Connects Jarvis to Google Gemini AI                    |
+| `python-dotenv`     | Loads the Gemini API key from `.env`                   |
+| `pywhatkit`         | Sends WhatsApp messages                                |
+| `webbrowser`        | Opens websites                                         |
+| `os`                | Accesses environment variables and system functions    |
+
+`webbrowser` and `os` are part of Python's standard library, so they **do not need to be installed separately**.
+
+The `numbers_phone.py` file is also part of this project and **does not need to be installed with pip**.
+
+### 1. Check Python Installation
+
+Make sure Python is installed on your computer:
+
+```bash
+python --version
+```
+
+You should see something similar to:
+
+```text
+Python 3.x.x
+```
+
+### 2. Create a Virtual Environment
+
+It is recommended to create a virtual environment for Jarvis:
+
+```bash
+python -m venv .venv
+```
+
+Activate it on Windows:
+
+```bash
+.venv\Scripts\activate
+```
+
+After activation, your terminal should show something similar to:
+
+```text
+(.venv)
+```
+
+### 3. Install Required Modules
+
+Install all required packages with:
+
+```bash
+pip install SpeechRecognition PyAudio pyttsx3 google-genai python-dotenv pywhatkit
+```
+
+Alternatively, you can install them one by one:
+
+```bash
+pip install SpeechRecognition
+pip install PyAudio
+pip install pyttsx3
+pip install google-genai
+pip install python-dotenv
+pip install pywhatkit
+```
+
+### 4. Recommended: Use `requirements.txt`
+
+You can also create a file named:
+
+```text
+requirements.txt
+```
+
+Add:
+
+```text
+SpeechRecognition
+PyAudio
+pyttsx3
+google-genai
+python-dotenv
+pywhatkit
+```
+
+Then install everything with one command:
+
+```bash
+pip install -r requirements.txt
+```
+
+This is the recommended method when sharing the project on GitHub.
+
+### 5. Project Structure
+
+After setup, your project can look like this:
+
+```text
+Jarvis/
+│
+├── main.py
+├── numbers_phone.py
+├── requirements.txt
+├── .env
+├── .gitignore
+└── README.md
+```
+
+### 6. Configure the Gemini API Key
+
+Create a `.env` file in the project folder:
+
+```text
+GEMINI_API_KEY=your_gemini_api_key_here
+```
+
+Then load it in Python:
+
+```python
+from dotenv import load_dotenv
+import os
+
+load_dotenv()
+
+client = genai.Client(
+    api_key=os.getenv("GEMINI_API_KEY")
+)
+```
+
+**Never upload `.env` to GitHub.**
+
+Add this to `.gitignore`:
+
+```text
+.env
+```
+
+### 7. Configure WhatsApp Contacts
+
+Create:
+
+```text
+numbers_phone.py
+```
+
+and add your contacts:
+
+```python
+numbers = {
+    "saad": "+919963120595",
+    "ashhaz": "+917893191196",
+}
+```
+
+Then import it into `main.py`:
+
+```python
+from numbers_phone import numbers
+```
+
+For privacy, do not upload real phone numbers to a public repository.
+
+Add this to `.gitignore`:
+
+```text
+numbers_phone.py
+```
+
+You can instead upload a `numbers_phone.example.py` containing dummy numbers.
+
+### 8. Run Jarvis
+
+Activate the virtual environment:
+
+```bash
+.venv\Scripts\activate
+```
+
+Then run:
+
+```bash
+python main.py
+```
+
+Say:
+
+```text
+Jarvis
+```
+
+to activate the assistant.
+
+### ⚠️ PyAudio Installation on Windows
+
+If `pip install PyAudio` fails on Windows, make sure you are using a supported Python version and that your Python environment is correctly configured.
+
+You can try:
+
+```bash
+python -m pip install --upgrade pip
+```
+
+and then:
+
+```bash
+pip install PyAudio
+```
+
+After installing the required modules, run:
+
+```bash
+python main.py
+```
+
+and test the microphone.
+
+### 🚀 Quick Installation
+
+For a fresh installation, the basic setup is:
+
+```bash
+git clone <your-repository-url>
+cd jarvis
+
+python -m venv .venv
+.venv\Scripts\activate
+
+pip install -r requirements.txt
+
+python main.py
+```
+
+
 
