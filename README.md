@@ -79,3 +79,128 @@ Add this to your `.gitignore`:
 You will need to provide your own API key to use the Gemini-powered features.
 
 Enjoy building your own Jarvis! 🤖🚀
+
+### 6. Use the Message Function 📱
+
+Jarvis can also send WhatsApp messages using **PyWhatKit**. To use this feature, you need to create a separate Python file to store the names and phone numbers of your contacts.
+
+#### Create `numbers_phone.py`
+
+In the same folder as `main.py`, create a new file called:
+
+```text
+numbers_phone.py
+```
+
+Inside the file, create a dictionary containing the names and phone numbers of your contacts:
+
+```python
+numbers = {
+    "saad": "+919963120595",
+    "ashhaz": "+917893191196",
+}
+```
+
+Replace these names and phone numbers with your own contacts.
+
+> **Important:** Store phone numbers as strings and include the country code, for example `+91` for India.
+
+#### Import the Contact Dictionary
+
+In `main.py`, import the dictionary:
+
+```python
+from numbers_phone import numbers
+```
+
+Jarvis will use the name you speak to look up the corresponding phone number from the dictionary.
+
+#### How to Send a Message
+
+Run Jarvis normally:
+
+```bash
+python main.py
+```
+
+Then say:
+
+```text
+Jarvis
+```
+
+After Jarvis responds, say:
+
+```text
+send a message
+```
+
+Jarvis will then ask you for:
+
+1. **The contact's name** — for example, `Saad`
+2. **The message** — for example, `Hey Saad, how are you?`
+
+Jarvis will look up the phone number associated with the name in `numbers_phone.py` and use **PyWhatKit** to send the WhatsApp message.
+
+For example:
+
+```text
+You: Jarvis
+Jarvis: hello
+
+You: send a message
+
+Jarvis: Name...
+You: Saad
+
+Jarvis: Message...
+You: Hey Saad, how are you?
+```
+
+The program will find:
+
+```python
+numbers.get("saad")
+```
+
+which returns:
+
+```text
++919963120595
+```
+
+and then sends the message through WhatsApp.
+
+#### ⚠️ Privacy & Security
+
+Do **not** upload `numbers_phone.py` to a public GitHub repository if it contains real people's phone numbers.
+
+Add it to `.gitignore`:
+
+```text
+numbers_phone.py
+```
+
+A safer approach is to provide an example file such as:
+
+```text
+numbers_phone.example.py
+```
+
+containing dummy numbers:
+
+```python
+numbers = {
+    "example": "+910000000000",
+}
+```
+
+Then each user can create their own `numbers_phone.py` locally.
+
+Your `.gitignore` could contain:
+
+```text
+.env
+numbers_phone.py
+```
+
