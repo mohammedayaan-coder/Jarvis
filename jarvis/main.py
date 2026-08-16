@@ -5,6 +5,7 @@ import musicLibrary
 from google import genai
 from dotenv import load_dotenv
 import os
+import pywhatkit
 
  # setup
 
@@ -97,7 +98,40 @@ if __name__ == "__main__":
                 command = r.recognize_google(audio)
 
                 print("Command:", command)
+                # message section
+                if command.lower() == "send a message":
+                    
+                    with sr.Microphone() as source:
+                        print("Name...")
+                        audio = r.listen(source, timeout=5, phrase_time_limit=5)
 
+                    name = r.recognize_google(audio).lower()
+                    print("Name:", name)
+
+                    # Get message
+                    with sr.Microphone() as source:
+                        print("Message...")
+                        audio = r.listen(source, timeout=5, phrase_time_limit=10)
+
+                    message = r.recognize_google(audio)
+                    print("Message:", message)
+
+
+                    phone_number = numbers.get(name)
+
+                    if phone_number:
+                        speak(f"Sending message to {name}")
+
+                        pywhatkit.sendwhatmsg_instantly(
+                            phone_number,
+                            message,
+                            wait_time=10,
+                            tab_close=True,
+                            close_time=1
+                        )
+                    else:
+                        speak(f"I don't have a number saved for {name}")
+                
                 process_command(command)
 
         except Exception as e:
