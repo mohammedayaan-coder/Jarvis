@@ -358,8 +358,8 @@ and add your contacts:
 
 ```python
 numbers = {
-    "saad": "+919963120595",
-    "ashhaz": "+917893191196",
+    "saad": "+919xxxxxxxxxx",
+    "ashhaz": "+917xxxxxxxx",
 }
 ```
 
