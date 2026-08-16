@@ -96,8 +96,8 @@ Inside the file, create a dictionary containing the names and phone numbers of y
 
 ```python
 numbers = {
-    "saad": "+919963120595",
-    "ashhaz": "+917893191196",
+    "alice": "+919xxxxxxx",
+    "bob": "+917xxxxxxxxx",
 }
 ```
 
@@ -137,8 +137,8 @@ send a message
 
 Jarvis will then ask you for:
 
-1. **The contact's name** — for example, `Saad`
-2. **The message** — for example, `Hey Saad, how are you?`
+1. **The contact's name** — for example, `alice`
+2. **The message** — for example, `Hey alice, how are you?`
 
 Jarvis will look up the phone number associated with the name in `numbers_phone.py` and use **PyWhatKit** to send the WhatsApp message.
 
@@ -154,19 +154,19 @@ Jarvis: Name...
 You: Saad
 
 Jarvis: Message...
-You: Hey Saad, how are you?
+You: Hey alice, how are you?
 ```
 
 The program will find:
 
 ```python
-numbers.get("saad")
+numbers.get("alice")
 ```
 
 which returns:
 
 ```text
-+919963120595
++919xxxxxxx
 ```
 
 and then sends the message through WhatsApp.
